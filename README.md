@@ -1,1 +1,0 @@
-# etender-lot-status
