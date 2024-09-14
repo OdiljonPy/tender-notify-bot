@@ -20,7 +20,7 @@ async def check_lot_status():
         new_data = new_data_list[index]
         old_status = old_data.get('lot_status')
         new_status = new_data.get('status_id')
-        if old_status != new_status:
+        if old_status != new_status or new_status in [5, 7, 10, 11, 12]:
             customer = new_data.get('customer_name')
             start_cost = price_format_gateway(new_data.get('start_cost'))
             new_status_text = STATUS_IDS.get(new_status)
@@ -31,7 +31,7 @@ async def check_lot_status():
                 message = (f"C: {customer}\n"
                            f"Start_Cost: {start_cost}\n"
                            f"Deal_Cost: {deal_cost}\n"
-                           f"Status: {new_status_text}\n"
+                           f"Status: <b>{new_status_text}</b>\n"
                            f"<a href='{link}'>About lot</a>\n"
                            f"<a href='{file_link}'>File</a>")
                 await send_notify_admin(message=message)
