@@ -6,8 +6,8 @@ router = Router()
 
 @router.message(Command('help'))
 async def bot_help(message: types.Message):
-    text = ("Buyruqlar: ",
-            "/start - Botni ishga tushirish",
-            "/help - Yordam")
-
+    text = ("Команды: ",
+            "/start - Запустить бота",
+            "/help - Помощь",
+            "/add_lot - Добавить новый лот")
     await message.answer("\n".join(text))

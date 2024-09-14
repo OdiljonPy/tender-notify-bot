@@ -7,5 +7,5 @@ router = Router()
 @router.message(CommandStart())
 async def bot_start(message: types.Message):
     await message.answer(
-        text="Xush kelibsiz!"
+        text="Добро пожаловать!"
     )
