@@ -20,12 +20,12 @@ async def check_lot_status():
         new_data = new_data_list[index]
         old_status = old_data.get('lot_status')
         new_status = new_data.get('status_id')
-        if old_status != new_status or new_status in [5, 7, 10, 11, 12]:
+        if old_status != new_status or new_status in [5, 7, 10, 11, 12, 16]:
             customer = new_data.get('customer_name')
             start_cost = price_format_gateway(new_data.get('start_cost'))
             new_status_text = STATUS_IDS.get(new_status)
             link = f"https://etender.uzex.uz/lot/{old_data.get('lot_id')}"
-            if new_status in [5, 7, 10, 11, 12]:
+            if new_status in [5, 7, 10, 11, 12, 16]:
                 file_link = f"https://apietender.uzex.uz/api/Protocol/getCancelling?id={old_data.get('lot_id')}"
                 deal_cost = new_data.get('deal_cost')
                 message = (f"C: {customer}\n"
