@@ -1,5 +1,6 @@
+import asyncio
 from loader import db, bot
-from .fetch_data import fetch_new_data
+from .fetch_data import fetch_new_data, get_deal_cost
 from data.config import ADMINS, STATUS_IDS
 
 def price_format_gateway(price):
@@ -27,7 +28,7 @@ async def check_lot_status():
             link = f"https://etender.uzex.uz/lot/{old_data.get('lot_id')}"
             if new_status in [5, 7, 10, 11, 12, 16]:
                 file_link = f"https://apietender.uzex.uz/api/Protocol/getCancelling?id={old_data.get('lot_id')}"
-                deal_cost = new_data.get('deal_cost')
+                deal_cost = await get_deal_cost(pk=old_data.get('lot_id'))
                 message = (f"C: {customer}\n"
                            f"Start_Cost: {start_cost}\n"
                            f"Deal_Cost: {deal_cost}\n"
